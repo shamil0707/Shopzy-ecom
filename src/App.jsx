@@ -11,6 +11,9 @@ import { useState } from "react"
 import Order from "./pages/Order"
 import ProductDetails from "./components/ProductDetails"
 import SelectProducts from "./pages/SelectProducts"
+import AddCategoryForm from "./components/ProductForm/AddCategoryForm"
+import AddProductForm from "./components/ProductForm/AddProductForm"
+import ProductsByCategory from "./components/ProductForm/ProductsByCategory"
 
 
 
@@ -30,7 +33,9 @@ function App() {
     <Route path="/order-confirmation" element={<Order order={order}/>}></Route>
     <Route path="/select-products" element={<SelectProducts />} />
     <Route path="/product/:productId" element={<ProductDetails />}></Route>
-    
+    <Route path="/add-category" element={<AddCategoryForm />}></Route>
+    <Route path="/add-product" element={<AddProductForm />}></Route>
+    <Route path="/category/:categoryId" element={<ProductsByCategory />}></Route>
     
 
    </Routes>
