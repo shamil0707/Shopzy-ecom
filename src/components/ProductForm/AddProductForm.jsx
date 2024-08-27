@@ -8,18 +8,33 @@ const AddProductForm = () => {
 
     useEffect(() => {
         // Fetch categories to populate the select dropdown
-        axios.get('http://localhost:3000/api/v1/categories')
+        axios.get(`${import.meta.env.VITE_BASE_URL}/categories`,{withCredentials:true})
             .then(response => setCategories(response.data))
             .catch(error => console.error('Error fetching categories:', error));
     }, []);
 
-    const onSubmit = data => {
-        axios.post('http://localhost:3000/api/v1/products', data)
-            .then(response => {
-                alert('Product added successfully');
-                reset();
-            })
-            .catch(error => console.error('Error adding product:', error));
+    const onSubmit = async (data) => {
+        try {
+            // Create FormData to handle file upload
+            const formData = new FormData();
+            formData.append('name', data.name);
+            formData.append('price', data.price);
+            formData.append('description', data.description);
+            formData.append('categoryId', data.categoryId);
+            formData.append('picture', data.picture[0]); // Append the image file
+
+            // Post the form data to your backend
+            const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/products` , formData, {withCredentials:true}, { 
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+
+            alert('Product added successfully');
+            reset();
+        } catch (error) {
+            console.error('Error adding product:', error);
+        }
     };
 
     return (
@@ -34,8 +49,8 @@ const AddProductForm = () => {
                 <input {...register('price', { required: true })} type="number" className="w-full p-2 border rounded" />
             </div>
             <div className="mb-4">
-                <label className="block text-gray-700">Image URL</label>
-                <input {...register('image', { required: true })} className="w-full p-2 border rounded" />
+                <label className="block text-gray-700">Product Image</label>
+                <input {...register('picture', { required: true })} type="file" className="w-full p-2 border rounded" />
             </div>
             <div className="mb-4">
                 <label className="block text-gray-700">Description</label>

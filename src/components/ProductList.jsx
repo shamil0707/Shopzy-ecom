@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import Product from '../components/Product';
+import Product from './Product';
 
 const ProductList = () => {
     const { categoryId } = useParams();
@@ -9,7 +9,7 @@ const ProductList = () => {
 
     useEffect(() => {
         if (categoryId) {
-            axios.get(`http://localhost:3000/api/v1/products/category/${categoryId}`)
+            axios.get(`${import.meta.env.VITE_BASE_URL}/products/category/${categoryId}`)
                 .then(response => setProducts(response.data))
                 .catch(error => console.error('Error fetching products:', error));
         }

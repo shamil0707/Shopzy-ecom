@@ -7,7 +7,7 @@ const AddCategoryForm = () => {
 
     const onSubmit = async (data) => {
         try {
-            const response = await axios.post('http://localhost:3000/api/v1/categories', data);
+            const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/categories`, data,{withCredentials:true});
             alert('Category added successfully!');
         } catch (error) {
             console.error('Error adding category:', error);

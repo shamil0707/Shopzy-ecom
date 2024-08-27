@@ -6,7 +6,7 @@ const CategoryList = () => {
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:3000/api/v1/categories')
+        axios.get(`${import.meta.env.VITE_BASE_URL}/categories`)
             .then(response => setCategories(response.data))
             .catch(error => console.error('Error fetching categories:', error));
     }, []);

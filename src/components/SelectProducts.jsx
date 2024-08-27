@@ -6,7 +6,7 @@ const SelectProducts = () => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:3000/api/v1/products')
+        axios.get(`${import.meta.env.VITE_BASE_URL}/products`)
             .then(response => setProducts(response.data))
             .catch(error => console.error('Error fetching products:', error));
     }, []);

@@ -189,7 +189,7 @@ const Checkout = ({setOrder}) => {
                 {cart.items.map(item =>(
                     <div key={item._id} className='flex justify-between'>
                         <div className='flex items-center'>
-                            <img src={item.image} alt={item.name} className='w-16 h-16 object-contain rounded' />
+                            <img src={item.picture.secure_url} alt={item.name} className='w-16 h-16 object-contain rounded' />
                             <div className='ml-4'>
                                 <h4 className='text-md font-semibold'>{item.name}</h4>
                                 <p className='text-gray-600'>

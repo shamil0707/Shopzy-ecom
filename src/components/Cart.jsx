@@ -1,10 +1,10 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 
-import { decrementQuantity,incrementQuantity } from '../redux/cartslice';
-import { Link, useNavigate } from 'react-router-dom';
+import { incrementQuantity,decrementQuantity } from '../redux/cartslice';
+import { Link,useNavigate } from 'react-router-dom';
 import useCartItems from '../hooks/useCartItems';
-import CartItem from '../components/cartItem/cartItem';
+import CartItem from './cartItem/cartItem';
 
 
 function Cart (props)  {

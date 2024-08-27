@@ -1,6 +1,6 @@
 import React from 'react'
-import CategoryList from './CategoryList'
-import Footer from '../components/Footer'
+import CategoryList from '../routes/CategoryList'
+import Footer from './Footer'
 
 const Home = () => {
   return (

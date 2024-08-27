@@ -9,7 +9,7 @@ const ProductsByCategory = () => {
     useEffect(() => {
         // Fetch products by category
         if (categoryId) {
-            axios.get(`http://localhost:3000/api/v1/products/category/${categoryId}`)
+            axios.get(`${import.meta.env.VITE_BASE_URL}/products/category/${categoryId}`)
                 .then(response => setProducts(response.data))
                 .catch(error => console.error('Error fetching products:', error));
         }
@@ -21,7 +21,7 @@ const ProductsByCategory = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                 {products.map(product => (
                     <div key={product._id} className="border rounded-lg p-4 shadow-md">
-                        <img src={product.image} alt={product.name} className="w-full h-48 object-cover rounded-md mb-4" />
+                        <img src={product.picture.secure_url} alt={product.name} className="w-full h-48 object-cover rounded-md mb-4" />
                         <h2 className="text-xl font-bold">{product.name}</h2>
                         <p className="text-gray-700 mb-2">Price: ${product.price}</p>
                         <p className="text-gray-600">{product.description}</p>

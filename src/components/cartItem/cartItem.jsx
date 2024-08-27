@@ -10,7 +10,7 @@ function CartItem(props) {
   return (
     <>
     <article key={item.id} className='flex flex-row items-center gap-4 border mt-10 rounded-md py-4'>
-                        <img className='w-32 h-32 aspect-square object-contain' src={item.image} alt="" />
+                        <img className='w-32 h-32 aspect-square object-contain' src={item.picture.secure_url} alt="" />
                         <div className=''>
                         <h3 className='font-semibold'>{item.name}</h3>
                         <h2>${item.price}</h2>
