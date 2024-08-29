@@ -1,25 +1,32 @@
 import axios from 'axios';
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
 const LoginForm = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const [errorMessage, setErrorMessage] = useState('');
+    
 
     const onSubmit = (data) => {
-        axios.post(`${import.meta.env.VITE_BASE_URL}/auth/login`,data,{withCredentials: true})
-        .then(res => {
-            console.log(res)
-        })
-        .catch(error=>{
-            console.log(error)
-
-        })
-        // Here you would typically dispatch an action or call an API to log in the user
+        axios.post(`${import.meta.env.VITE_BASE_URL}/auth/login`, data, { withCredentials: true })
+            .then(res => {
+                console.log(res);
+                // Handle successful login, e.g., redirect to another page
+            })
+            .catch(error => {
+                console.error(error);
+                if (error.response && error.response.data && error.response.data.message) {
+                    setErrorMessage(error.response.data.message);
+                } else {
+                    setErrorMessage('An unexpected error occurred. Please try again.');
+                }
+            });
     };
 
     return (
         <div className="max-w-sm mx-auto p-6 bg-white rounded-lg shadow-md mt-10">
             <h2 className="text-2xl font-semibold text-gray-800 mb-4">Login</h2>
+            {errorMessage && <p className="text-red-600 mb-4">{errorMessage}</p>}
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="mb-4">
                     <label className="block text-gray-700">Email</label>

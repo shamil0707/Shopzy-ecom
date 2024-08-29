@@ -13,29 +13,29 @@ const AddProductForm = () => {
             .catch(error => console.error('Error fetching categories:', error));
     }, []);
 
-    const onSubmit = async (data) => {
-        try {
-            // Create FormData to handle file upload
-            const formData = new FormData();
-            formData.append('name', data.name);
-            formData.append('price', data.price);
-            formData.append('description', data.description);
-            formData.append('categoryId', data.categoryId);
-            formData.append('picture', data.picture[0]); // Append the image file
+    // const onSubmit = async (data) => {
+    //     try {
+    //         // Create FormData to handle file upload
+    //         const formData = new FormData();
+    //         formData.append('name', data.name);
+    //         formData.append('price', data.price);
+    //         formData.append('description', data.description);
+    //         formData.append('categoryId', data.categoryId);
+    //         formData.append('picture', data.picture[0]); // Append the image file
 
-            // Post the form data to your backend
-            const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/products` , formData, {withCredentials:true}, { 
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
-            });
+    //         // Post the form data to your backend
+    //         const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/products` , formData, {withCredentials:true}, { 
+    //             headers: {
+    //                 'Content-Type': 'multipart/form-data',
+    //             },
+    //         });
 
-            alert('Product added successfully');
-            reset();
-        } catch (error) {
-            console.error('Error adding product:', error);
-        }
-    };
+    //         alert('Product added successfully');
+    //         reset();
+    //     } catch (error) {
+    //         console.error('Error adding product:', error);
+    //     }
+    // };
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="max-w-md mx-auto p-4 bg-white rounded-lg shadow-lg">

@@ -1,4 +1,4 @@
-import { StrictMode } from "react";
+import { StrictMode, useState } from "react";
 import { createRoot } from "react-dom/client";
 
 import store from './redux/store'
@@ -10,7 +10,8 @@ import Home from "./components/Home";
 import ProductList from "./components/ProductList";
 import Product from "./components/Product";
 import CartItem from "./components/cartItem/cartItem";
-import Checkout from "./components/Checkout";
+import Checkout  from "./components/Checkout";
+import { checkoutLoader } from "./components/Cart";
 import Order from "./components/Order";
 
 import ProductDetails from "./components/ProductDetails";
@@ -30,6 +31,7 @@ import Logout from "./routes/logout";
 
 
 const router = createBrowserRouter([
+ 
 {
   path:'/',
   element: <Root/>,
@@ -54,7 +56,9 @@ const router = createBrowserRouter([
 
 {
   path:'/checkout',
-  element:<Checkout/>
+  element:<Checkout  />,
+  loader:checkoutLoader,
+  
 },
 {
   path: '/order-confirmation',

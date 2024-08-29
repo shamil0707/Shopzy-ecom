@@ -1,16 +1,17 @@
 import React from 'react'
 import useCartItems from '../hooks/useCartItems'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
+import { useOutletContext } from 'react-router-dom'
 
-
-const Order = ({order}) => {
+const Order = () => {
+    const {order,setOrder} = useOutletContext()
     const navigate = useNavigate()
     const [items,totalPrice] = useCartItems() 
     
   return (
     <div className='container mx-auto py-8 px-4 md:px-16 lg:px-24'>
         <h2 className='text-2xl font-semibold mb-4'>Thank you for your order</h2>
-        <p>Your order has been placed successfully you will recieve an email </p>
+        <p>Your order has been placed successfully  </p>
         <div className='mt-6 p-4 border rounded-lg bg-slate-300'>
             <h3 className='text-lg font-semibold mb-2'> Order Summary </h3>
             <p>Order Number:{order.orderNumber}</p>
